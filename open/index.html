@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en"><head><title>SI Trails</title><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta property="og:title" content="SI Trails"><meta property="og:description" content="A spot or route on Spring Island, shared with you."><meta name="referrer" content="no-referrer"><style>body{font:17px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#1f2a24;background:#f6f4ec;margin:0}main{max-width:680px;margin:0 auto;padding:32px 20px 60px}h1{font-size:28px;margin:0 0 4px}h2{font-size:19px;margin:28px 0 6px}p,li{margin:8px 0}.sub{color:#5b665f;margin:0 0 20px}a{color:#2b6a45}.button{display:inline-block;margin:12px 0 4px;padding:14px 26px;border-radius:12px;background:#2b6a45;color:#fff;font-weight:600;font-size:19px;text-decoration:none}.button[hidden]{display:none}footer{margin-top:36px;color:#5b665f;font-size:14px}</style></head>
+<body><main>
+<h1>SI Trails</h1>
+<p class="sub">The trail map app for Spring Island, South Carolina</p>
+
+<p id="shared">Someone shared a spot or route on Spring Island with you.</p>
+<p><a id="open" class="button" href="#" hidden>Open in SI Trails</a></p>
+
+<h2>Don't have the app yet?</h2>
+<p><a href="https://testflight.apple.com/join/XgjDd8KC">Get SI Trails</a>, then come back to this message and tap the link again.</p>
+
+<footer><a href="/">SI Trails support</a> · <a href="/privacy">Privacy policy</a></footer>
+</main>
+<script>
+// The shared place is in the part of the address after "#", which the browser never sends to
+// the web server. This script only copies it into a link that opens the app; it sends nothing anywhere.
+(function () {
+  var payload = location.hash.slice(1);
+  var button = document.getElementById("open");
+  if (/^[A-Za-z0-9_-]+$/.test(payload)) {
+    button.href = "sitrails://open#" + payload;
+    button.hidden = false;
+  } else {
+    document.getElementById("shared").textContent = "SI Trails is a trail map for Spring Island that works without cell signal.";
+  }
+})();
+</script>
+</body></html>
